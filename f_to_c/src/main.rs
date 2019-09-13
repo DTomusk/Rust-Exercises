@@ -2,7 +2,7 @@ use std::io;
 
 fn f_to_c(input: String) -> Result<f32, std::num::ParseFloatError> {
     let input = input.trim();
-    let temp: f32 = input.parse().expect("Unable to parse string to float");
+    let temp: f32 = input.parse()?;
     Ok((temp - 32.0) * (5.0 / 9.0))
 }
 
