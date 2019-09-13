@@ -1,0 +1,17 @@
+use std::io;
+
+fn f_to_c(input: String) -> Result<i32, std::num::ParseFloatError> {
+    let input = input.trim();
+    let temp: i32 = input.parse().expect("Unable to parse string to float");
+    Ok((temp - 32) * (5 / 9))
+}
+
+fn main() {
+    println!("Input temperature in Fahrenheit");
+    let mut temperature = String::new();
+    io::stdin().read_line(&mut temperature).unwrap();
+    match f_to_c(temperature) {
+        Ok(a) => println!("Celsius is {}", a),
+        Err(_) => panic!("Unable to convert to celsius"),
+    }
+}
