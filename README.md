@@ -1,2 +1,2 @@
 # Rust-Exercises
-Implementaions for the end of chapter exercises in the Rust Book
+Practising concepts as I work through the Rust book
