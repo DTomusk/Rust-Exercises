@@ -1,3 +1,5 @@
+mod slice;
+
 fn main() {
     let this = noncopy_ownership();
     let (x, y) = copy_ownership();
@@ -27,6 +29,13 @@ fn main() {
     // can have multiple immutable references to the same variable
     println!("{}", big.capacity());
     println!("{}", small.len());
+
+    let _those = that.clone();
+    // clear takes a mutable reference to the string 
+    that.clear();
+    println!("{}", that);
+
+    slice::basic_slice_stuff();
 }
 
 // data types with unknown size at compile time don't implement the "copy" trait
