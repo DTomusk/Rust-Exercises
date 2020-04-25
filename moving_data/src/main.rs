@@ -4,11 +4,29 @@ fn main() {
     println!("x: {}", x);
     println!("y: {}", y);
 
-    let that = take_and_give(this);
+    let mut that = take_and_give(this);
 
-    println!("{:?}", that);
+    println!("{}", that);
 
+    // instead of moving the value the function is given a reference to it so it can read the string
+    borrow_string(&that);
+
+    // that doesn't go anywhere so you can still use it and mutate it afterwards
+    that.push_str(" large celebration!");
     // everything drops out of scope
+
+    // using a mutable reference allows you to change a variable without taking ownership of it
+    // you can only have one mutable reference to a variable at a time so clashes don't occur
+    change_string(&mut that);
+
+    println!("{}", that);
+
+    let big = & that;
+    let small = & that;
+
+    // can have multiple immutable references to the same variable
+    println!("{}", big.capacity());
+    println!("{}", small.len());
 }
 
 // data types with unknown size at compile time don't implement the "copy" trait
@@ -40,4 +58,13 @@ fn copy_ownership() -> (i32, i32) {
 
 fn take_and_give(strin: String) -> String {
     strin
+}
+
+fn borrow_string(strong: &String) {
+    println!("{}", strong.capacity());
+    println!("{}", strong.len());
+}
+
+fn change_string(strang: &mut String) {
+    strang.push_str(" Dikembe Mutombo taught me everything");
 }
