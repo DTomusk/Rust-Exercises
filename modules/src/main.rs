@@ -1,3 +1,6 @@
+// another file is a module of itself 
+mod mods;
+
 // brings rand into scope so we can use its functions and traits
 use rand::Rng;
 // change the name if you want
@@ -25,6 +28,8 @@ fn main() {
     // rand contains a struct thread_rng which implements the function gen_range
     let random = rand::thread_rng().gen_range(1,50);
     Accounts::taxes();
+
+    mods::nest::draw_stuff();
 }
 
 // modules can be nested inside other modules
