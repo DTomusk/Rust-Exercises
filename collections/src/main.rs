@@ -1,3 +1,5 @@
+mod strongs;
+mod hush;
 // collections contain multiple values
 // collection data is stored on the heap, so the compiler doesn't need to know the size before runtime
 // collections can grow or shrink during run time
@@ -45,4 +47,6 @@ fn main() {
     vov.push(DifferentTypes::Mordecai(vec![2,4,6,87]));
 
     let kaiser = viv.pop();
+
+    strongs::string_stuff();
 }
