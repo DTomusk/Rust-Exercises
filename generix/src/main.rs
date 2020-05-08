@@ -1,3 +1,4 @@
+mod trites;
 // "generics are abstract stand-ins for concrete types or other properties"
 // functions can take generic arguments without knowing the specific type
 // Option<T> and Result<T, E> both use generics
@@ -44,8 +45,8 @@ fn main() {
     //let mister = jan { mor: 1.2, gan: 7 };
 }
 
-fn largest<T>(list: &[T]) -> &T {
-    &list[0]
+fn largest<T: Copy>(list: &[T]) -> T {
+    list[0]
 }
 
 /*
