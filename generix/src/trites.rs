@@ -67,11 +67,11 @@ fn calling<T: Sing>(one: T, two: T) {
 fn do_something<T, U, V>(one: T, two: U, three: U, four: V)
     // specify which traits the generic arguments have to implement
     where T: Clone,
-        U: Sing,
+        U: PartialOrd + Sing,
         V: Clone + Sing
 {}
 
-// can return generic types that implement traits 
+// can return generic types that implement traits
 fn return_trait() -> impl Sing {
     Person {
         name: String::from("Jemimah"),
