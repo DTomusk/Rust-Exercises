@@ -26,6 +26,8 @@ mod tests {
     }
 
     #[test]
+    // can ignore tests
+    #[ignore]
     fn fail() {
         // can add a string literal as a custom error message
         assert_eq!(1 + 1, 1, "Sum failed");
@@ -58,7 +60,7 @@ mod tests {
     }
 
     // instead of using the assert macro to check panics, you can use the result type
-    // if ok returned then test passed, if error returned then failed 
+    // if ok returned then test passed, if error returned then failed
     #[test]
     fn results() -> Result<(), String> {
         if true {
@@ -74,4 +76,11 @@ To test:
 1) set up necessary data/states
 2) run testing code
 3) assert the results are as expected
+
+run cargo test -- --test-threads=1 to run each test consecutively instead of in parallel
+use -- --show-output to show output
+
+rust considers two main types of test: unit tests and integration tests
+unit tests are smaller and focus more on the functionality of single modules, functions etc.
+integration tests check whether parts work together as expected 
 */
