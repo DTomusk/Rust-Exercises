@@ -17,13 +17,14 @@ fn main() {
     // not sure what a closure is yet, will find out later
     // unwrap or else gets the value from the result if it's Ok or else handles the error case
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {}", err);
+        // eprintln prints to stderr instead of stdout 
+        eprintln!("Problem parsing arguments: {}", err);
         // exiting with a non zero code is a standard way of showing an error has occurred
         process::exit(1);
     });
 
     if let Err(e) = minigrep::run(config) {
-        println!("Application error: {}", e);
+        eprintln!("Application error: {}", e);
 
         process::exit(1);
     }
