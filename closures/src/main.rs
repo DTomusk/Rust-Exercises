@@ -7,7 +7,7 @@
 use std::thread;
 use std::time::Duration;
 
-// stores an expensive calculation that we want to call only when completely necessary 
+// stores an expensive calculation that we want to call only when completely necessary
 struct Cacher<T>
 where
     // generic type implements Fn trait, that is we can store a function as a type for a variable
@@ -47,6 +47,17 @@ where
 fn main() {
     let standard_option = 50.09;
     the_choice_is_yours(standard_option);
+
+    let bar = 7;
+    let check = |n| {
+        if n > bar {
+            true
+        } else {
+            false
+        }
+    };
+
+    assert!(check(6));
 }
 
 fn the_choice_is_yours(opt: f64) {
