@@ -9,24 +9,29 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
-        // clone usually isn't the optimal solution but its impact here is minimal
-        let query = args[1].clone();
-        let filename = args[2].clone();
+    pub fn new(mut args: std::env::Args) -> Result<Config, &'static str> {
+        args.next();
 
-        let mut case_sensitive = true;
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("No query input")
+        };
 
-        // option for case insensitive
-        if args.len() == 4 {
-            if args[3] == "-i" || args[3] == "--insensitive" {
-                case_sensitive = false
-            } else {
-                return Err("Unrecognised option");
-            }
-        }
+        let filename = match args.next() {
+            Some(arg) => arg,
+            None => return Err("No filename input"),
+        };
+
+        let case_sensitive = match args.next() {
+            Some(arg) => {
+                if arg == "-i" {
+                    false
+                } else {
+                    return Err("Invalid option input")
+                }
+            },
+            None => true,
+        };
 
         Ok(Config {
             query,
@@ -60,15 +65,9 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // the explicit lifetime shows that the return value's lifetime comes from the contents argument
 // we're saying the returned vector contains references to contents rather than query
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-    // .lines() returns an iterator which separates a str into lines
-    for line in contents.lines() {
-        // .contains() checks whether a certain string is contained in another string
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-    results
+    // turns contents into an iterator of lines, filters them based on whether they contain the desired string
+    //then collects them into a vector with the desired signature 
+    contents.lines().filter(|line| line.contains(query)).collect()
 }
 
 // I'm not sure this function is completely necessary as the logic is very similar to search
