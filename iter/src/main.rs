@@ -46,6 +46,14 @@ fn main() {
     }
 
     println!("It took {} tries to get to 7", count);
+
+    let vort: Vec<i32> = vec![1,2,3,4,5,6,7,8];
+    let virt: Vec<bool> = vec![false, false, true, false, true, true, true, false, true];
+    // zip combines two iterators to make one iterator of the length of the shorter iterator 
+    let vert = vort.iter().zip(virt.iter());
+    for v in vert {
+        println!("{:?}", &v);
+    }
 }
 
 #[cfg(test)]
