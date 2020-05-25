@@ -8,6 +8,7 @@
 mod traits;
 mod types;
 mod adfunc;
+mod macaroni;
 
 use std::slice;
 
