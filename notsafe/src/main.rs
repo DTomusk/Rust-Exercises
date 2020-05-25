@@ -5,6 +5,8 @@
 // implement unsafe traits
 // access fields of union S
 
+mod traits;
+
 use std::slice;
 
 // static variables are rust's version of global variables
@@ -35,8 +37,10 @@ fn main() {
         println!("The absolute value of -7 according to C is {}", abs(-7));
     }
 
-    // printing static variables is safe 
+    // printing static variables is safe
     println!("{}", BAD);
+
+    traits::trait_stuff();
 }
 
 // you take responsibility for calling unsafe functions
