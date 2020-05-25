@@ -7,6 +7,7 @@
 
 mod traits;
 mod types;
+mod adfunc;
 
 use std::slice;
 
@@ -42,6 +43,8 @@ fn main() {
     println!("{}", BAD);
 
     traits::trait_stuff();
+
+    adfunc::funky();
 }
 
 // you take responsibility for calling unsafe functions
