@@ -6,6 +6,7 @@
 // access fields of union S
 
 mod traits;
+mod types;
 
 use std::slice;
 
